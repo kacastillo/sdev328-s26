@@ -64,17 +64,54 @@ function showMonuments(mons) {
     const grid = document.querySelector("#monuments-grid");
 
     for (let monument of mons) {
-        const { name, yearCompleted, type } = monument;
+        addMonumentCard(monument, grid);
+        // const { name, yearCompleted, type } = monument;
 
-        const monumentCard = `
-            <div class="monument">
-                <h2>${name}</h2>
-                <hr>
-                <p class="year">Year: ${yearCompleted}</p>
-                <p>Type: ${type}</p>
-            </div>
-        `
+        // const monumentCard = `
+        //     <div class="monument">
+        //         <h2>${name}</h2>
+        //         <hr>
+        //         <p class="year">Year: ${yearCompleted}</p>
+        //         <p>Type: ${type}</p>
+        //     </div>
+        // `
 
-        grid.innerHTML += monumentCard;
+
     }
+}
+
+function addMonumentToPage(monument, grid) {
+const {name, yearCompleted, type} = monument;
+ const [div, h2, hr, pYear, pType, ullinks, liEdit, liDelete] = createElements(["div", "h2", "hr", "p", "p", "ul", "li", "li", "a", "a"]);
+
+ div.className = "monument";
+ h2.textContent = name;
+ pYear.className = "year";
+ pYear.textContent = `Year: ${yearCompleted}`;
+ pType.textContent = `Type: ${type}`;
+
+ullinks.className = "links";
+addEdit.textContent = "Edit";
+aEdit.href="#";
+aDelete.textContent = "Delete";
+aDelete.href="#";
+ 
+
+appendAll(div, h2, hr, pYear, pType);
+
+liEdit.appendChild(aEdit);
+liDelete.appendChild(aDelete);
+appendAll(ulLinks, liEdit, liDelete);
+div.appendChild(ulLinks);
+
+grid.appendChild(div);
+
+
+function createElements(tags) {
+    const elems = [];
+    for(const tag of tags) {
+        elems.push(document.createElement(tag));
+    }
+    return elems;
+}
 }

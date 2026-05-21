@@ -36,3 +36,22 @@ form {
         margin-bottom: 0.5rem;
     }
 }
+
+.links {
+    display:flex;
+    flex-direction:row;
+    gap:8px;
+    list-style-type:none;
+    padding:0;
+
+    a {
+        color:white;
+        text-decoration:none;
+        text-transform:uppercase;
+    }
+
+    &:hover {
+        color:pink;
+
+    }
+}
