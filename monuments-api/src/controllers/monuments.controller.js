@@ -1,4 +1,4 @@
-import { allMonuments, addMonument } from '../services/monuments.service.js';
+import { allMonuments, addMonument, } from '../services/monuments.service.js';
 
 export const getMons = (req, res) => {
     const monArray = allMonuments();
@@ -19,3 +19,23 @@ export const addMon = (req, res) => {
         })
     }
 }
+
+export const updateMon = (req, res) => {
+    const mon = req.body;
+    if (mon) {
+        const success = updateMonument(mon);
+        if (success) {
+            res.status(200).json({
+                message: "Monument updated successfully"
+            })
+        } else {
+            res.status(404).json({
+                message: "Monument not found"
+            })
+        }
+    } else {
+        res.status(400).json({
+            message: "Missing monument"
+        })
+    }
+}   
